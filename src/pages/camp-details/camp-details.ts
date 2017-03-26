@@ -8,11 +8,22 @@ import { Data } from '../../providers/data';
   templateUrl: 'camp-details.html'
 })
 export class CampDetailsPage {
+  campDetailsForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public dataService: Data) {}
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public dataService: Data) {
+    this.campDetailsForm = formBuilder.group({
+      gateAccessCode: [''],
+      ammenitiesCode: [''],
+      wifiPassword: [''],
+      phoneNumber: [''],
+      departure: [''],
+      notes: ['']
+    })
+  }
 
   saveForm(): void {
-
+    let data = this.campDetailsForm.value;
+    // this.dataService.setCampDetails(data);
   }
 
 }

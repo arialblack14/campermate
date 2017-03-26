@@ -18,29 +18,31 @@
     </ion-card-content>
   </ion-card>
   <ion-list no-lines>
-    <ion-item>
-      <ion-label stacked>Gate Access Code</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Ammenities Code</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Wifi Password</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Phone Number</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Departure Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Notes</ion-label>
-      <ion-textarea type="text"></ion-textarea>
-    </ion-item>
+    <form [formGroup]="campDetailsForm" (change)="saveForm()">
+      <ion-item>
+        <ion-label stacked>Gate Access Code</ion-label>
+        <ion-input formControlName="gateAccessCode" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Ammenities Code</ion-label>
+        <ion-input formControlName="ammenitiesCode" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Wifi Password</ion-label>
+        <ion-input formControlName="wifiPassword" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone Number</ion-label>
+        <ion-input formControlName="phoneNumber" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Departure Date</ion-label>
+        <ion-datetime formControlName="departure" displayFormat="DD/MM/YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Notes</ion-label>
+        <ion-textarea formControlName="notes" type="text"></ion-textarea>
+      </ion-item>
+    </form>
   </ion-list>
 </ion-content>

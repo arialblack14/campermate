@@ -8,11 +8,21 @@ import { Data } from '../../providers/data';
   templateUrl: 'my-details.html'
 })
 export class MyDetailsPage {
+  myDetailsForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public dataService: Data) {}
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public dataService: Data) {
+    this.myDetailsForm = formBuilder.group({
+      carRegistration: [''],
+      trailerRegistration: [''],
+      trailerDimensions: [''],
+      phoneNumber: [''],
+      notes: ['']
+    });
+  }
 
   saveForm(): void {
-
+    let data = this.myDetailsForm.value;
+    // this.dataService.setMyDetails(data);
   }
 
 }
