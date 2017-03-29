@@ -57,7 +57,7 @@ export class LocationPage {
       let alert = this.alertCtrl.create({
         title: 'Location set!',
         subTitle: 'You can now find your way back to your camp site from anywhere by clicking the button in the top right corner.',
-        buttons: [{ text: 'Ok' }]
+        buttons: [{text: 'Ok'}]
       });
 
       alert.present();
