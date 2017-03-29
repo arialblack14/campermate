@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Data } from '../../providers/data';
 
@@ -10,7 +10,7 @@ import { Data } from '../../providers/data';
 export class MyDetailsPage {
   myDetailsForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public dataService: Data) {
+  constructor(public nav: NavController, public platform: Platform, public formBuilder: FormBuilder, public dataService: Data) {
     this.myDetailsForm = formBuilder.group({
       carRegistration: [''],
       trailerRegistration: [''],
@@ -20,9 +20,31 @@ export class MyDetailsPage {
     });
   }
 
+  ionViewDidLoad() {
+    this.platform.ready().then(() => {
+      this.dataService.getMyDetails().then((details) => {
+        let savedDetails: any = false;
+
+        if (details && typeof(details) != "undefined") {
+          savedDetails = JSON.parse(details);
+        }
+
+        let formControls: any = this.myDetailsForm.controls;
+
+        if (savedDetails) {
+           formControls.carRegistration.setValue(savedDetails.carRegistration);
+           formControls.trailerRegistration.setValue(savedDetails.trailerRegistration);
+           formControls.trailerDimensions.setValue(savedDetails.trailerDimensions);
+           formControls.phoneNumber.setValue(savedDetails.phoneNumber);
+           formControls.notes.setValue(savedDetails.notes);
+        }
+      });
+    });
+  }
+
   saveForm(): void {
     let data = this.myDetailsForm.value;
-    // this.dataService.setMyDetails(data);
+    this.dataService.setMyDetails(data);
   }
 
 }
